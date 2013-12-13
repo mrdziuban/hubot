@@ -6,7 +6,8 @@ module.exports = (robot) ->
 			msg.send restaurant
 
 lunchMe = (msg, query, cb) ->
-	lunchQuery = query ? "lunch"
+	lunchQuery = query or "lunch"
+	lunchQuery.replace /\s/, "%20"
 	msg.send "the query is: #{lunchQuery}"
 	msg.http("https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=#{apiKey}&location=42.36007439999999%2C-71.0540307&radius=800&sensor=false&types=food&keyword=#{lunchQuery}&maxprice=1")
 		.get() (err, res, body) ->
