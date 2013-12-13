@@ -15,6 +15,6 @@ lunchMe = (msg, query, cb) ->
 			lunchSpots = lunchSpots.results
 			if lunchSpots?.length > 0
 				lunchSpot = msg.random lunchSpots
-				cb lunchSpot.name, lunchSpots.vicinity, lunchSpot.geometry.location.lat + "%2C" + lunchSpot.geometry.location.lng
+				cb lunchSpot.name, lunchSpot.vicinity, lunchSpot.geometry.location.lat + "%2C" + lunchSpot.geometry.location.lng
 			else
 				msg.send "No results found"
