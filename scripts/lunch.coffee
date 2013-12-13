@@ -24,6 +24,7 @@ lunchMe = (msg, query, cb) ->
 									lunchSpots = JSON.parse(body)
 									results.push lunchSpots.results
 			if results?.length > 0
+				msg.send results.length
 				lunchSpot = msg.random results
 				cb lunchSpot.name, lunchSpot.vicinity, lunchSpot.geometry.location.lat + "%2C" + lunchSpot.geometry.location.lng
 			else
