@@ -6,7 +6,8 @@ module.exports = (robot) ->
 			msg.send restaurant
 
 lunchMe = (msg, query, cb) ->
-	query = 'lunch' if query == ''
+	msg.send query
+	msg.send "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=#{apiKey}&location=42.36007439999999%2C-71.0540307&radius=800&sensor=false&types=food&maxprice=1&keyword=#{query}%20lunch"
 	msg.http("https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=#{apiKey}&location=42.36007439999999%2C-71.0540307&radius=800&sensor=false&types=food&maxprice=1&keyword=#{query}%20lunch")
 		.get() (err, res, body) ->
 			lunchSpots = JSON.parse(body)
