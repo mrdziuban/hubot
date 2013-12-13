@@ -6,10 +6,9 @@ module.exports = (robot) ->
 			msg.send restaurant
 
 lunchMe = (msg, query, cb) ->
-	q = key: apiKey, local: "42.36007439999999%2C-71.0540307", radius: "800", sensor: "false", types: "food", maxprice: "1", keyword: query
-	msg.send query
-	msg.http("https://maps.googleapis.com/maps/api/place/nearbysearch/json")
-		.query(q)
+	lunchQuery = query ? "lunch"
+	msg.send "the query is: #{lunchQuery}"
+	msg.http("https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=#{apiKey}&location=42.36007439999999%2C-71.0540307&radius=800&sensor=false&types=food&keyword=#{lunchQuery}&maxprice=1")
 		.get() (err, res, body) ->
 			lunchSpots = JSON.parse(body)
 			lunchSpots = lunchSpots.results
