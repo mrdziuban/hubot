@@ -2,7 +2,7 @@ apiKey = process.env.HUBOT_GOOGLE_PLACES_API_KEY
 
 module.exports = (robot) ->
 	robot.respond /(lunch me)(.*)/i, (msg) ->
-		lunchMe msg, msg.match[1], (restaurant) ->
+		lunchMe msg, msg.match[2], (restaurant) ->
 			msg.send restaurant
 
 lunchMe = (msg, query, cb) ->
