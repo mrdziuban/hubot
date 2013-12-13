@@ -5,7 +5,7 @@ module.exports = (robot) ->
 		lunchMe msg, msg.match[2], (restaurant, address, coords) ->
 			msg.send restaurant
 			msg.send address
-			msg.send "http://maps.google.com/maps/api/staticmap?markers=" + escape(coords) + "|1%20south%20market%20street%20boston%20ma%2002109&size=800x400&maptype=roadmap&sensor=false&format=png"
+			msg.send "http://maps.google.com/maps/api/staticmap?markers=" + coords + "|1%20south%20market%20street%20boston%20ma%2002109&size=800x400&maptype=roadmap&sensor=false&format=png"
 
 lunchMe = (msg, query, cb) ->
 	lunchQuery = query or "lunch"
