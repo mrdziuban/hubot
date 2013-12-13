@@ -4,7 +4,8 @@ module.exports = (robot) ->
 	robot.respond /(lunch me)(.*)/i, (msg) ->
 		lunchMe msg, msg.match[2], (restaurant, address) ->
 			msg.send restaurant
-			msg.send "http://maps.google.com/maps/api/staticmap?markers=" + escape(address) + "&size=400x400&maptype=roadmap&sensor=false&format=png"
+			msg.send address
+			msg.send "http://maps.google.com/maps/api/staticmap?markers=" + escape(address) + "|1%20south%20market%20street%20boston%20ma%2002109&size=800x400&maptype=roadmap&sensor=false&format=png"
 
 lunchMe = (msg, query, cb) ->
 	lunchQuery = query or "lunch"
