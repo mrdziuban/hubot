@@ -12,9 +12,19 @@ lunchMe = (msg, query, cb) ->
 	msg.http("https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=#{apiKey}&location=42.36007439999999%2C-71.0540307&radius=800&sensor=false&types=food&keyword=" + escape(lunchQuery) + "&maxprice=1")
 		.get() (err, res, body) ->
 			lunchSpots = JSON.parse(body)
-			lunchSpots = lunchSpots.results
-			if lunchSpots?.length > 0
-				lunchSpot = msg.random lunchSpots
+			results = lunchSpots.results
+			if lunchSpots.next_page_token
+				msg.http("https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=#{apiKey}&sensor=false&pagetoken=#{lunchSpots.next_page_token}")
+					.get() (err, res, body) ->
+						lunchSpots = JSON.parse(body)
+						results.push lunchSpots.results
+						if lunchSpots.next_page_token
+							msg.http("https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=#{apiKey}&sensor=false&pagetoken=#{lunchSpots.next_page_token}")
+								.get() (err, res, body) ->
+									lunchSpots = JSON.parse(body)
+									results.push lunchSpots.results
+			if results?.length > 0
+				lunchSpot = msg.random results
 				cb lunchSpot.name, lunchSpot.vicinity, lunchSpot.geometry.location.lat + "%2C" + lunchSpot.geometry.location.lng
 			else
 				msg.send "No results found"
