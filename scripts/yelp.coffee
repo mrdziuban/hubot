@@ -60,9 +60,9 @@ yelp = require("yelp").createClient consumer_key: consumer_key, consumer_secret:
 
 lunchMe = (msg, query, random = true) ->
   # Clean up the query
-  query = "food" if typeof query == "undefined"
+  query = "lunch" if typeof query == "undefined"
   query = query.replace(trim_re, '')
-  query = "food" if query == ""
+  query = "lunch" if query == ""
 
   # Extract a location from the query
   split = query.split(/\snear\s/i)
@@ -72,7 +72,7 @@ lunchMe = (msg, query, random = true) ->
 
   # Perform the search
   #msg.send("Looking for #{query} around #{location}...")
-  yelp.search category_filter: "restaurants", term: query, radius_filter: radius, sort: sort, limit: 50, location: location, (error, data) ->
+  yelp.search category_filter: "restaurants", term: query, radius_filter: radius, sort: sort, limit: 20, location: location, (error, data) ->
     if error != null
       return msg.send "There was an error searching for #{query}. Maybe try #{default_suggestion}?"
 
