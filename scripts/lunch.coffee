@@ -5,7 +5,7 @@ module.exports = (robot) ->
 		lunchMe msg, msg.match[2], (results) ->
 			if results?.length > 0
 				lunchSpot = msg.random results
-				msg.send lunchSpot.name + " - " + lunchSpot.vicinity.replace /Boston/, '' + " - " + "http://maps.google.com/maps?q=" + lunchSpot.geometry.location.lat + "%2C" + lunchSpot.geometry.location.lng + "&hl=en&sll=37.0625,-95.677068&sspn=73.579623,100.371094&vpsrc=0&hnear=" + lunchSpot.geometry.location.lat + "%2C" + lunchSpot.geometry.location.lng + "&t=m&z=11"
+				msg.send lunchSpot.name + " - " + lunchSpot.vicinity.replace /, Boston/, '' + " - " + "http://maps.google.com/maps?q=" + lunchSpot.geometry.location.lat + "%2C" + lunchSpot.geometry.location.lng + "&hl=en&sll=37.0625,-95.677068&sspn=73.579623,100.371094&vpsrc=0&hnear=" + lunchSpot.geometry.location.lat + "%2C" + lunchSpot.geometry.location.lng + "&t=m&z=11"
 			else
 				msg.send "No results found"
 
