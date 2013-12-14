@@ -60,9 +60,9 @@ yelp = require("yelp").createClient consumer_key: consumer_key, consumer_secret:
 
 lunchMe = (msg, query, random = true) ->
   # Clean up the query
-  query = "lunch" if typeof query == "undefined"
+  query = "food" if typeof query == "undefined"
   query = query.replace(trim_re, '')
-  query = "lunch" if query == ""
+  query = "food" if query == ""
 
   # Extract a location from the query
   split = query.split(/\snear\s/i)
