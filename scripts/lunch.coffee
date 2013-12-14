@@ -5,9 +5,13 @@ module.exports = (robot) ->
 		lunchMe msg, msg.match[2], (results) ->
 			if results?.length > 0
 				lunchSpot = msg.random results
-				msg.send lunchSpot.name
-				msg.send lunchSpot.vicinity
-				msg.send "http://maps.google.com/maps/api/staticmap?markers=" + lunchSpot.geometry.location.lat + "%2C" + lunchSpot.geometry.location.lng + "|1%20south%20market%20street%20boston%20ma%2002109&size=800x400&maptype=roadmap&sensor=false&format=png"
+				msg.send lunchSpot.name + "\n"
+									+ lunchSpot.vicinity + "\n"
+									+ "http://maps.google.com/maps?q=" +
+               			lunchSpot.geometry.location.lat + "%2C" + lunchSpot.geometry.location.lng +
+              			"&hl=en&sll=37.0625,-95.677068&sspn=73.579623,100.371094&vpsrc=0&hnear=" +
+              			lunchSpot.geometry.location.lat + "%2C" + lunchSpot.geometry.location.lng +
+              			"&t=m&z=11"
 			else
 				msg.send "No results found"
 
