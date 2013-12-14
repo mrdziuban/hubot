@@ -97,4 +97,4 @@ module.exports = (robot) ->
 
   robot.respond /yelp me(.*)/i, (msg) ->
     query = msg.match[1]
-    lunchMe msg, query, false
+    lunchMe msg, query
