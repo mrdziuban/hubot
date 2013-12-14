@@ -2,7 +2,8 @@ allowedScores = ['1','2','3','4']
 
 module.exports = (robot) ->
   robot.respond /poker (play|start)/i, (msg) ->
-    channel = msg.envelope.user.reply_to
+    channel = msg.envelope.user.room
+    console.log channel
     robot.brain.set 'poker', channel
     msg.send 'Poker begun. Estimate your task using the syntax "poker estimate 1|2|3|4'
 
@@ -15,6 +16,7 @@ module.exports = (robot) ->
     if room
       if allowedScores.indexOf estimate > -1
         robot.brain.set 'Poker scores: ' + origin.user.id, estimate
+        console.log origin.user.id
         robot.adapter.send envelope, origin.user.name + ' has estimated'
         msg.send 'Thanks!'
       else
@@ -27,11 +29,11 @@ module.exports = (robot) ->
     scores = []
     users = robot.brain.users()
 
-    for user in users
-      key = 'Poker scores: ' + user
+    for id, user of users
+      key = 'Poker scores: ' + id
       score = robot.brain.get(key)
       if score != null
-        scores.push users[user].name + ' estimated ' + score
+        scores.push user.name + ' estimated ' + score
         robot.brain.remove(key)
 
     for score in scores
