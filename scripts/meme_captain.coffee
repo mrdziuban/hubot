@@ -27,71 +27,71 @@
 #   bobanj
 
 module.exports = (robot) ->
-  robot.respond /Y U NO (.+)/i, (msg) ->
+  robot.hear /Y U NO (.+)/i, (msg) ->
     memeGenerator msg, 'http://memecaptain.com/y_u_no.jpg', 'Y U NO', msg.match[1], (url) ->
       msg.send url
 
-  robot.respond /iron price (.+)/i, (msg) ->
+  robot.hear /iron price (.+)/i, (msg) ->
     memeGenerator msg, 'http://imgur.com/nqVZQel.jpg', msg.match[1], 'Pay the iron price', (url) ->
       msg.send url
 
-  robot.respond /aliens guy (.+)/i, (msg) ->
+  robot.hear /aliens guy (.+)/i, (msg) ->
     memeGenerator msg, 'http://memecaptain.com/aliens.jpg', msg.match[1], '', (url) ->
       msg.send url
 
-  robot.respond /brace yourself (.+)/i, (msg) ->
+  robot.hear /brace yourself (.+)/i, (msg) ->
     memeGenerator msg, 'http://i.imgur.com/cOnPlV7.jpg', 'Brace Yourself', msg.match[1], (url) ->
       msg.send url
 
-  robot.respond /(.*) (ALL the .*)/i, (msg) ->
+  robot.hear /(.*) (ALL the .*)/i, (msg) ->
     memeGenerator msg, 'http://memecaptain.com/all_the_things.jpg', msg.match[1], msg.match[2], (url) ->
       msg.send url
 
-  robot.respond /(I DON'?T ALWAYS .*) (BUT WHEN I DO,? .*)/i, (msg) ->
+  robot.hear /(I DON'?T ALWAYS .*) (BUT WHEN I DO,? .*)/i, (msg) ->
     memeGenerator msg, 'http://memecaptain.com/most_interesting.jpg', msg.match[1], msg.match[2], (url) ->
       msg.send url
 
-  robot.respond /(.*)(SUCCESS|NAILED IT.*)/i, (msg) ->
+  robot.hear /(.*)(SUCCESS|NAILED IT.*)/i, (msg) ->
     memeGenerator msg, 'http://memecaptain.com/success_kid.jpg', msg.match[1], msg.match[2], (url) ->
       msg.send url
 
-  robot.respond /(.*) (\w+\sTOO DAMN .*)/i, (msg) ->
+  robot.hear /(.*) (\w+\sTOO DAMN .*)/i, (msg) ->
     memeGenerator msg, 'http://memecaptain.com/too_damn_high.jpg', msg.match[1], msg.match[2], (url) ->
       msg.send url
 
-  robot.respond /(NOT SURE IF .*) (OR .*)/i, (msg) ->
+  robot.hear /(NOT SURE IF .*) (OR .*)/i, (msg) ->
     memeGenerator msg, 'http://memecaptain.com/fry.png', msg.match[1], msg.match[2], (url) ->
       msg.send url
 
-  robot.respond /(YO DAWG .*) (SO .*)/i, (msg) ->
+  robot.hear /(YO DAWG .*) (SO .*)/i, (msg) ->
     memeGenerator msg, 'http://memecaptain.com/xzibit.jpg', msg.match[1], msg.match[2], (url) ->
       msg.send url
 
-  robot.respond /(All your .*) (are belong to .*)/i, (msg) ->
+  robot.hear /(All your .*) (are belong to .*)/i, (msg) ->
     memeGenerator msg, 'http://i.imgur.com/gzPiQ8R.jpg', msg.match[1], msg.match[2], (url) ->
       msg.send url
 
-  robot.respond /(.*)\s*BITCH PLEASE\s*(.*)/i, (msg) ->
+  robot.hear /(.*)\s*BITCH PLEASE\s*(.*)/i, (msg) ->
     memeGenerator msg, 'http://memecaptain.com/yao_ming.jpg', msg.match[1], msg.match[2], (url) ->
       msg.send url
 
-  robot.respond /(.*)\s*COURAGE\s*(.*)/i, (msg) ->
+  robot.hear /(.*)\s*COURAGE\s*(.*)/i, (msg) ->
     memeGenerator msg, 'http://memecaptain.com/courage_wolf.jpg', msg.match[1], msg.match[2], (url) ->
       msg.send url
 
-  robot.respond /ONE DOES NOT SIMPLY (.*)/i, (msg) ->
+  robot.hear /ONE DOES NOT SIMPLY (.*)/i, (msg) ->
     memeGenerator msg, 'http://memecaptain.com/boromir.jpg', 'ONE DOES NOT SIMPLY', msg.match[1], (url) ->
       msg.send url
 
-  robot.respond /(IF YOU .*\s)(.* GONNA HAVE A BAD TIME)/i, (msg) ->
+  robot.hear /(IF YOU .*\s)(.* GONNA HAVE A BAD TIME)/i, (msg) ->
     memeGenerator msg, 'http://memecaptain.com/bad_time.jpg', msg.match[1], msg.match[2], (url) ->
       msg.send url
 
-  robot.respond /(.*)TROLLFACE(.*)/i, (msg) ->
+  robot.hear /(.*)TROLLFACE(.*)/i, (msg) ->
     memeGenerator msg, 'http://memecaptain.com/troll_face.jpg', msg.match[1], msg.match[2], (url) ->
       msg.send url
 
-  robot.respond /(IF .*), ((ARE|CAN|DO|DOES|HOW|IS|MAY|MIGHT|SHOULD|THEN|WHAT|WHEN|WHERE|WHICH|WHO|WHY|WILL|WON\'T|WOULD)[ \'N].*)/i, (msg) ->
+  robot.hear /(IF .*), ((ARE|CAN|DO|DOES|HOW|IS|MAY|MIGHT|SHOULD|THEN|WHAT|WHEN|WHERE|WHICH|WHO|WHY|WILL|WON\'T|WOULD)[ \'N].*)/i, (msg) ->
     memeGenerator msg, 'http://memecaptain.com/philosoraptor.jpg', msg.match[1], msg.match[2] + (if msg.match[2].search(/\?$/)==(-1) then '?' else ''), (url) ->
       msg.send url
 
