@@ -35,8 +35,8 @@ imageMe = (msg, query, animated, cb) ->
     .query(q)
     .get() (err, res, body) ->
       images = JSON.parse(body)
-      if not images or not images.responseData or not images.responseData.results
-        return cb 'No image found';
+      # if not images or not images.responseData or not images.responseData.results
+      #   return cb 'No image found';
       images = images.responseData.results
       if images.length > 0
         image  = msg.random images
