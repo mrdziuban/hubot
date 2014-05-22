@@ -35,10 +35,30 @@ imageMe = (msg, query, animated, cb) ->
     .query(q)
     .get() (err, res, body) ->
       images = JSON.parse(body)
-      # if not images or not images.responseData or not images.responseData.results
-      #   return cb 'No image found';
-      images = images.responseData.results
-      if images.length > 0
-        image  = msg.random images
+      if not images or not images.responseData or not images.responseData.results
+        msg.http('http://ajax.googleapis.com/ajax/services/search/images')
+          .query(q)
+          .get() (err, res, body) ->
+            images = JSON.parse(body)
+            if not images or not images.responseData or not images.responseData.results
+              msg.http('http://ajax.googleapis.com/ajax/services/search/images')
+                .query(q)
+                .get() (err, res, body) ->
+                  images = JSON.parse(body)
+                  if not images or not images.responseData or not images.responseData.results
+                    return cb 'No image found, because I suck'
+                  else
+                    images = images.responseData.results
+                    if images.length > 0
+                      image  = msg.random images
+            else
+              images = images.responseData.results
+              if images.length > 0
+                image  = msg.random images
+      else
+        images = images.responseData.results
+        if images.length > 0
+          image  = msg.random images
+      if image
         cb "#{image.unescapedUrl}#.png"
 
